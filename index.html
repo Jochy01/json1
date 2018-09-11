@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no">
+	<title>Estudiantes</title> 
+	
+</head>
+<body> 
+	  <h1>Lista de Estudiantes y Notas</h1>
+
+<button onclick="listarJson(jsonEstudiantes)">Listar</button>
+<p id="listar"></p>
+<button onclick="notaMayor(jsonEstudiantes)">Nota Mayor</button>
+<p id="notaMayor"></p>
+<button onclick="notaMenor(jsonEstudiantes)">Nota Menor</button>
+<p id="notaMenor"></p>
+<button onclick="getPromedio(jsonEstudiantes)">Promedio</button>
+<p id="promedio"></p>
+</body>
+
+</body> 
+ <script>
+ 	  
+ 	  var jsonEstudiantes = [
+    {
+      "codigo": "001",
+      "nombre": "lazala",
+      "nota": 10
+    },
+    {
+      "codigo": "002",
+      "nombre": "juan",
+      "nota": 7
+    },
+    {
+      "codigo": "003",
+      "nombre": "maria",
+      "nota": 8
+    },
+    {
+      "codigo": "004",
+      "nombre": "mercedes",
+      "nota": 9
+    },
+    {
+      "codigo": "005",
+      "nombre": "juliana",
+      "nota": 6
+    },
+    {
+      "codigo": "006",
+      "nombre": "vaneza",
+      "nota": 8
+    },
+    {
+      "codigo": "007",
+      "nombre": "elizabeth",
+      "nota": 9
+    },
+    {
+      "codigo": "008",
+      "nombre": "miguel",
+      "nota": 7
+    },
+    {
+      "codigo": "009",
+      "nombre": "senelda",
+      "nota": 6
+    },
+    {
+      "codigo": "010",
+      "nombre": "josefa",
+      "nota": 4
+    }
+    ];
+
+
+
+     function listarJson(json) {
+    //Se genera tabla que mostrara los datos
+    var out = "<table><tr><td>Codigo</td><td>Nombre</td><td>Nota</td></tr>";
+
+    var i;
+
+    for(i=0; i<json.length; i++){
+      out +=  "<tr><td>" + json[i].codigo + ' </td><td> ' + json[i].nombre +
+              "</td><td>" + json[i].nota + "</td></tr>";
+
+    }
+    document.getElementById('listar').innerHTML = out + "</table>";
+  }
+
+
+  function notaMayor(json) {
+
+    var out =  "<h3>La mejor nota es:</h3><br>";
+    var notaMayor = 0;
+    var nombre = "";
+    for(var i=0; i<json.length; i++){
+
+        if(json[i].nota > notaMayor){
+          notaMayor = json[i].nota;
+          nombre = json[i].nombre;
+        }
+
+    }
+    document.getElementById('notaMayor').innerHTML = out + nombre + ": " + notaMayor;
+  }
+
+  function notaMenor(json) {
+
+    var out = "<h3>La peor nota es:</h3><br>";
+    var notaMenor = 10;
+    var nombre = "";
+    for(var i=0; i<json.length; i++){
+
+        if(json[i].nota < notaMenor){
+          notaMenor=json[i].nota;
+          nombre = json[i].nombre;
+        }
+
+    }
+    document.getElementById('notaMenor').innerHTML = out + nombre + ": " + notaMenor;
+  }
+
+  function getPromedio(json) {
+
+    var out =  "<h3>El promedio del curso es: </h3><br>";
+    var total = 0;
+    var promedio;
+    for(var i=0; i<json.length; i++){
+        total += json[i].nota;
+    }
+    promedio = (total/json.length);
+
+    total /= json.length;
+
+    document.getElementById('promedio').innerHTML = out + total;
+  }
+
+ </script>
+</html>
